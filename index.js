@@ -18,6 +18,10 @@ app.get('/weather', async (req, res) => {
     }
 });
 
+app.post('/api', (request, response) => {
+  console.log(request);
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
 app.use(express.static('public'));

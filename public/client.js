@@ -7,7 +7,7 @@ const createWeatherLi = (weather) => {
 };
 
 const appendWeatherToDOM = (weather) => {
-    const p = document.querySelector('p');
+    const p = document.getElementById('summary');
     p.appendChild(createWeatherLi(weather));
 };
 
