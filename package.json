@@ -1,15 +1,9 @@
 {
   "name": "rainfall",
-  "version": "0.0.1",
-  "description": "Plots local rainfall data provided by the Dark Sky API.",
-  "main": "proxy.js",
-  "dependencies": {
-    "axios": "^0.19.2",
-    "express": "^4.17.1",
-    "jsdom": "^16.2.1",
-    "node-fetch": "^2.6.0",
-    "request": "^2.88.2"
-  },
+  "version": "1.0.0",
+  "description": "Get location and display rainfall data.",
+  "main": "index.js",
+  "dependencies": {},
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,9 +13,10 @@
     "url": "git+https://github.com/patbroughton/Rainfall.git"
   },
   "keywords": [
-    "rain",
     "rainfall",
-    "measurements"
+    "rain",
+    "dark",
+    "sky"
   ],
   "author": "Pat Broughton",
   "license": "MIT",

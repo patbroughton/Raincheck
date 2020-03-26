@@ -1,6 +1,7 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
+var lat, lon;
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -9,7 +10,9 @@ app.use((req, res, next) => {
 
 app.get('/weather', async (req, res) => {
   try{
-    const api_url = 'https://api.darksky.net/forecast/84bf8dba2301b12fb20120c993d6b0d6/42.3601,-71.0589';
+    console.log(`Lat is ${lat}`);
+    console.log(`Lon is ${lon}`);
+    const api_url = `https://api.darksky.net/forecast/84bf8dba2301b12fb20120c993d6b0d6/${lat},${lon}`;
     const response  = await fetch(api_url);
     const json = await response.json();
     res.json(json);
@@ -18,8 +21,18 @@ app.get('/weather', async (req, res) => {
     }
 });
 
+app.use(express.json());
+
 app.post('/api', (request, response) => {
-  console.log(request);
+  console.log('Request received...');
+  console.log(request.body);
+  lat = request.body.lat;
+  lon = request.body.lon;
+  response.json({
+    status: 'success',
+    latitude: lat,
+    longitude: lon
+  });
 });
 
 const PORT = process.env.PORT || 3000;

@@ -11,23 +11,7 @@
             <p>Location:
                 <span id="latitude"></span>&deg;, <span id="longitude"></span>&deg;
             </p>
-            <script>
-                if ('geolocation' in navigator) {
-                    console.log('geolocation available');
-                    navigator.geolocation.getCurrentPosition(position => {
-                        console.log(position.coords);
-                    lat = position.coords.latitude;
-                    lon = position.coords.longitude;
-                    document.getElementById('latitude').textContent = lat.toFixed(2);
-                    document.getElementById('longitude').textContent = lon.toFixed(2);
-                    });
-                }
-                else {
-                    console.log('geolocation not available');
-                }
-            </script>
-            <p id='summary'>Summary:</p>
-            
+            <p id='summary'>Summary:</p>   
         </div>
 
 <script src="client.js"></script>
