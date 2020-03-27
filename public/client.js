@@ -1,6 +1,25 @@
 
 const now = new Date()  
-const secondsSinceEpoch = Math.round(now.getTime() / 1000) 
+
+var day = [];
+var year = [];
+var month = [];
+var date = [];
+var hour = [];
+var minute = [];
+for (i=0; i<11; i++){
+    day[i] = new Date(now - ((86400*i) * 1000));
+    year[i] = day[i].getFullYear();
+    month[i] = day[i].getMonth() + 1;
+    date[i] = day[i].getDate();
+    hour[i] = day[i].getHours();
+    minute[i] = day[i].getMinutes();
+}
+
+console.log(`Date: ${year[0]}-${month[0]}-${date[0]}`);
+console.log(`Time: ${hour[0]}:${minute[0]}`);
+console.log(`Today: ${now}`);
+
 
 const createWeatherLi = (weather) => {
     const li = document.createElement('li');
@@ -32,7 +51,7 @@ const fetchWeather = async () => {
             rainTotalMeters += weather.features[i].properties.precipitationLastHour.value;
         }
         const rainTotalInches = (rainTotalMeters * 1000) / 25.4;
-        const averageRainTotalInches = (rainTotalInches / weather.features.length) * 96;
+        const averageRainTotalInches = (rainTotalInches / weather.features.length) * 216;
         console.log(`Rain total (inches): ${rainTotalInches}`);
         console.log(`Average rain total (inches): ${averageRainTotalInches}`);
         
@@ -50,7 +69,7 @@ function geolocate(resolve, reject) {
             const lon = position.coords.longitude;
             document.getElementById('latitude').textContent = lat.toFixed(2);
             document.getElementById('longitude').textContent = lon.toFixed(2);
-            const data = {lat, lon, secondsSinceEpoch};
+            const data = {lat, lon, year, month, date, hour, minute};
             const options = {
                 method: 'POST',
                 headers: {
