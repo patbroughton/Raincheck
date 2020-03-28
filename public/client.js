@@ -1,6 +1,6 @@
 const NUM_DAYS_MAX = 30;
 let numDays = 3;
-let lat, lon, weather;
+let station, lat, lon, weather;
 const now = new Date()
 
 class DailyData {
@@ -29,7 +29,7 @@ console.log(`Today: ${now}`);
 
 const createWeatherLi = (weather) => {
     const li = document.createElement('li');
-    li.textContent = `${weather}`;
+    li.textContent = `${weather}"`;
     return li;
 };
 
@@ -61,7 +61,10 @@ const fetchWeather = async () => {
         //Await the server's response
         const json = await response.json();
         weather = json;
+        console.log(`Weather Data:`);
         console.log(weather);
+        station = weather.features[0].properties.station;
+        document.getElementById('station').textContent = station;
         //Calculate total rainfall and diplay it
         const rainTotal = calculateRainfall();
         appendWeatherToDOM(Math.round((rainTotal + Number.EPSILON) * 100) / 100);

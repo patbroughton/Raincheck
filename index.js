@@ -30,8 +30,13 @@ app.get('/weather', async (req, res) => {
     // TODO: Don't forget to handle time zone
     const start_timestamp = `${dailyDataArray[numDays].year}-${dailyDataArray[numDays].month}-${dailyDataArray[numDays].date}T${dailyDataArray[numDays].hour}%3A${dailyDataArray[numDays].minute}`;
     const end_timestamp = `${dailyDataArray[0].year}-${dailyDataArray[0].month}-${dailyDataArray[0].date}T${dailyDataArray[0].hour}%3A${dailyDataArray[0].minute}`;
-    const api_url = `https://api.weather.gov/stations/kbkl/observations?start=${start_timestamp}%3A00-05%3A00&end=${end_timestamp}%3A00-05%3A00`;
-    const response  = await fetch(api_url);
+    const station_url = `https://api.weather.gov/points/${lat}%2C${lon}/stations`;
+    const station_data  = await fetch(station_url);
+    const station_data_json = await station_data.json();
+    const station_id = station_data_json.features[0].properties.stationIdentifier;
+    console.log(`Station ID: ${station_id}`);
+    const weather_url = `https://api.weather.gov/stations/${station_id}/observations?start=${start_timestamp}%3A00-05%3A00&end=${end_timestamp}%3A00-05%3A00`;
+    const response  = await fetch(weather_url);
     const json = await response.json();
     res.json(json);
   } catch (error) {
