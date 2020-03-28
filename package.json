@@ -12,7 +12,7 @@
   "engines": {
     "node": "13.11.0",
     "npm": "6.13.7"
-  }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patbroughton/Raincheck.git"
