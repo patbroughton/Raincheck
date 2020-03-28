@@ -1,8 +1,8 @@
 {
-  "name": "rainfall",
-  "version": "1.0.0",
+  "name": "raincheck",
+  "version": "0.0.1",
   "description": "Get location and display rainfall data.",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/patbroughton/Rainfall.git"
+    "url": "git+https://github.com/patbroughton/Raincheck.git"
   },
   "keywords": [
     "rainfall",
@@ -21,7 +21,7 @@
   "author": "Pat Broughton",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/patbroughton/Rainfall/issues"
+    "url": "https://github.com/patbroughton/Raincheck/issues"
   },
-  "homepage": "https://github.com/patbroughton/Rainfall#readme"
+  "homepage": "https://github.com/patbroughton/Raincheck#readme"
 }
