@@ -2,7 +2,7 @@
   "name": "raincheck",
   "version": "0.0.1",
   "description": "Get location and display rainfall data.",
-  "main": "server.js",
+  "main": "index.js",
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
@@ -25,6 +25,6 @@
   },
   "homepage": "https://github.com/patbroughton/Raincheck#readme",
   "scripts": {
-    "start": "server.js"
+    "start": "index.js"
   }
 }
