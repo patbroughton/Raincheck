@@ -13,6 +13,7 @@ class DailyData {
       this.hour = 0;
       this.minute = 0;
       this.rain = 0;
+      this.numRecords = 0;
     }
 }
 dailyDataArray = [];
@@ -70,7 +71,12 @@ const fetchWeather = async () => {
         document.getElementById('station').textContent = station;
         //Calculate total rainfall and display it
         const rainTotal = calculateRainfall();
-        appendWeatherToDOM(Math.round((rainTotal + Number.EPSILON) * 100) / 100);
+        appendWeatherToDOM(`Total: ${Math.round((rainTotal + Number.EPSILON) * 100) / 100}`);
+        appendWeatherToDOM(`${dailyDataArray[0].month}/${dailyDataArray[0].date}: ${Math.round((dailyDataArray[0].rain + Number.EPSILON) * 100) / 100}`);
+        appendWeatherToDOM(`${dailyDataArray[1].month}/${dailyDataArray[1].date}: ${Math.round((dailyDataArray[1].rain + Number.EPSILON) * 100) / 100}`);
+        appendWeatherToDOM(`${dailyDataArray[2].month}/${dailyDataArray[2].date}: ${Math.round((dailyDataArray[2].rain + Number.EPSILON) * 100) / 100}`);
+        console.log(`Daily Data:`);
+        console.log(dailyDataArray);
     } catch (error) {
         console.error(error);
       }
@@ -79,17 +85,35 @@ const fetchWeather = async () => {
 
 const calculateRainfall = () => {
     let rainTotalMeters = 0;
+    let dayNum = 0;
+    let dailyRainTotalInches = 0;
     for (i=0; i<weather.features.length; i++){
-        timestamp = weather.features[i].properties.timestamp.split('-');
-        datestamp = timestamp[2].split('T');
-        console.log(`Timestamp: ${datestamp}`);
+        let timestamp = weather.features[i].properties.timestamp.split('-');
+        let date = timestamp[2].split('T');
+        //Method 1: Sum all reported rain measurements for each day
+        if (date[0] == dailyDataArray[dayNum].date.toString(10)){
+            dailyDataArray[dayNum].rain += weather.features[i].properties.precipitationLastHour.value;
+            dailyDataArray[dayNum].numRecords++;
+        }
+        else {
+            dayNum++;
+        }
+        //Method 2: Sum all reported measurements, not separating them by day
         rainTotalMeters += weather.features[i].properties.precipitationLastHour.value;
     }
+    //Method 1: Calculate an average rainfall rate for each day and use this to calculate an estimated daily total
+    for (i=0; i<numDays; i++){
+        dailyDataArray[i].rain  = (dailyDataArray[i].rain / dailyDataArray[i].numRecords) * 24;
+        dailyDataArray[i].rain = (dailyDataArray[i].rain * 1000) / 25.4;
+        dailyRainTotalInches += dailyDataArray[i].rain;
+    }
+    //Method 2:Calculate an average rainfall rate for the time period and use this to calculate an estimated total 
     const rainTotalInches = (rainTotalMeters * 1000) / 25.4;
     const averageRainTotalInches = (rainTotalInches / weather.features.length) * 24 * numDays;
     console.log(`Rain total (inches): ${rainTotalInches}`);
+    console.log(`Daily Rain total (inches): ${dailyRainTotalInches}`);
     console.log(`Average rain total (inches): ${averageRainTotalInches}`);
-    return averageRainTotalInches
+    return dailyRainTotalInches
 }
 
 function geolocate() {

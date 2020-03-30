@@ -13,6 +13,7 @@ class DailyData {
       this.hour = 0;
       this.minute = 0;
       this.rain = 0;
+      this.numRecords = 0;
     }
 }
 dailyDataArray = [];
@@ -28,6 +29,7 @@ app.get('/weather', async (req, res) => {
   try{
     console.log(`Lat is ${lat}`);
     console.log(`Lon is ${lon}`);
+    //Ensure that hours and minutes contain 2 digits, padding with a leading zero if necessary
     padTime();
     //const api_url = `https://api.darksky.net/forecast/84bf8dba2301b12fb20120c993d6b0d6/${lat},${lon},${yesterday}`;
     const start_timestamp = `${dailyDataArray[numDays].year}-${dailyDataArray[numDays].month}-${dailyDataArray[numDays].date}T${dailyDataArray[numDays].hour}%3A${dailyDataArray[numDays].minute}`;
@@ -64,12 +66,13 @@ app.post('/api', (request, response) => {
   });
 });
 
+// This function formats time data properly for API request
 function padTime() {
   for (i=0; i<numDays+1; i++){
     dailyDataArray[i].hour = dailyDataArray[i].hour.toString(10).padStart(2, '0');
     dailyDataArray[i].minute = dailyDataArray[i].minute.toString(10).padStart(2, '0');
-    console.log(`Padded hours: ${dailyDataArray[i].hour}`);
-    console.log(`Padded minutes: ${dailyDataArray[i].minute}`);
+    //console.log(`Padded hours: ${dailyDataArray[i].hour}`);
+    //console.log(`Padded minutes: ${dailyDataArray[i].minute}`);
   }
 }
 
