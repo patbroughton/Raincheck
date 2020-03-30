@@ -29,7 +29,8 @@ app.get('/weather', async (req, res) => {
     console.log(`Lon is ${lon}`);
     //const api_url = `https://api.darksky.net/forecast/84bf8dba2301b12fb20120c993d6b0d6/${lat},${lon},${yesterday}`;
     // TODO: Don't forget to handle time zone
-    const start_timestamp = `${dailyDataArray[numDays].year}-${dailyDataArray[numDays].month}-${dailyDataArray[numDays].date}T${dailyDataArray[numDays].hour-4}%3A${dailyDataArray[numDays].minute}`;
+    // ***ADDED A TEMPORARY OFFSET TO THE START TIME - DON'T FORGET TO REMOVE THIS!!! ***
+    const start_timestamp = `${dailyDataArray[numDays].year}-${dailyDataArray[numDays].month}-${dailyDataArray[numDays].date}T${dailyDataArray[numDays].hour}%3A${dailyDataArray[numDays].minute}`;
     const end_timestamp = `${dailyDataArray[0].year}-${dailyDataArray[0].month}-${dailyDataArray[0].date}T${dailyDataArray[0].hour}%3A${dailyDataArray[0].minute}`;
     const station_url = `https://api.weather.gov/points/${lat}%2C${lon}/stations`;
     const station_data  = await fetch(station_url);

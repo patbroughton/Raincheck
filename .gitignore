@@ -1,2 +1,7 @@
 darksky key.txt
 node_modules
+raincheck_info.ca-bundle
+raincheck_info.crt
+raincheck_info.p7b
+example_com.csr
+example_com.key
