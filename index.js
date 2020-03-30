@@ -36,7 +36,7 @@ app.get('/weather', async (req, res) => {
     const station_data_json = await station_data.json();
     const station_id = station_data_json.features[0].properties.stationIdentifier;
     console.log(`Station ID: ${station_id}`);
-    const weather_url = `https://api.weather.gov/stations/${station_id}/observations?start=${start_timestamp}%3A00-05%3A00&end=${end_timestamp}%3A00-05%3A00`;
+    const weather_url = `https://api.weather.gov/stations/${station_id}/observations?start=${start_timestamp}%3A00-00%3A00&end=${end_timestamp}%3A00-00%3A00`;
     const response  = await fetch(weather_url);
     const json = await response.json();
     res.json(json);

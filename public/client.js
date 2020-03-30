@@ -2,6 +2,7 @@ const NUM_DAYS_MAX = 30;
 let numDays = 3;
 let station, lat, lon, weather;
 const now = new Date()
+const timezoneOffset = now.getTimezoneOffset();
 
 class DailyData {
     constructor() {
@@ -20,11 +21,12 @@ for (i=0; i< NUM_DAYS_MAX+1; i++){
     dailyDataArray[i].year = dailyDataArray[i].day.getFullYear();
     dailyDataArray[i].month = dailyDataArray[i].day.getMonth() + 1;
     dailyDataArray[i].date = dailyDataArray[i].day.getDate();
-    dailyDataArray[i].hour = dailyDataArray[i].day.getHours();
+    dailyDataArray[i].hour = dailyDataArray[i].day.getHours() + (timezoneOffset / 60);
     dailyDataArray[i].minute = dailyDataArray[i].day.getMinutes();
 }
 console.log(`Daily Data Array: ${dailyDataArray}`);
 console.log(`Today: ${now}`);
+console.log(`Time Zone Offset: ${timezoneOffset}`);
 
 
 const createWeatherLi = (weather) => {
