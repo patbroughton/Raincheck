@@ -12,6 +12,7 @@ class DailyData {
       this.date = 0;
       this.hour = 0;
       this.minute = 0;
+      this.rain = 0;
     }
 }
 dailyDataArray = [];
@@ -67,7 +68,7 @@ const fetchWeather = async () => {
         console.log(weather);
         station = weather.features[0].properties.station;
         document.getElementById('station').textContent = station;
-        //Calculate total rainfall and diplay it
+        //Calculate total rainfall and display it
         const rainTotal = calculateRainfall();
         appendWeatherToDOM(Math.round((rainTotal + Number.EPSILON) * 100) / 100);
     } catch (error) {
@@ -79,6 +80,9 @@ const fetchWeather = async () => {
 const calculateRainfall = () => {
     let rainTotalMeters = 0;
     for (i=0; i<weather.features.length; i++){
+        timestamp = weather.features[i].properties.timestamp.split('-');
+        datestamp = timestamp[2].split('T');
+        console.log(`Timestamp: ${datestamp}`);
         rainTotalMeters += weather.features[i].properties.precipitationLastHour.value;
     }
     const rainTotalInches = (rainTotalMeters * 1000) / 25.4;

@@ -12,6 +12,7 @@ class DailyData {
       this.date = 0;
       this.hour = 0;
       this.minute = 0;
+      this.rain = 0;
     }
 }
 dailyDataArray = [];
@@ -27,8 +28,8 @@ app.get('/weather', async (req, res) => {
   try{
     console.log(`Lat is ${lat}`);
     console.log(`Lon is ${lon}`);
+    padTime();
     //const api_url = `https://api.darksky.net/forecast/84bf8dba2301b12fb20120c993d6b0d6/${lat},${lon},${yesterday}`;
-    // TODO: Don't forget to handle time zone
     const start_timestamp = `${dailyDataArray[numDays].year}-${dailyDataArray[numDays].month}-${dailyDataArray[numDays].date}T${dailyDataArray[numDays].hour}%3A${dailyDataArray[numDays].minute}`;
     const end_timestamp = `${dailyDataArray[0].year}-${dailyDataArray[0].month}-${dailyDataArray[0].date}T${dailyDataArray[0].hour}%3A${dailyDataArray[0].minute}`;
     const station_url = `https://api.weather.gov/points/${lat}%2C${lon}/stations`;
@@ -62,6 +63,15 @@ app.post('/api', (request, response) => {
     dailyDataArray: dailyDataArray
   });
 });
+
+function padTime() {
+  for (i=0; i<numDays+1; i++){
+    dailyDataArray[i].hour = dailyDataArray[i].hour.toString(10).padStart(2, '0');
+    dailyDataArray[i].minute = dailyDataArray[i].minute.toString(10).padStart(2, '0');
+    console.log(`Padded hours: ${dailyDataArray[i].hour}`);
+    console.log(`Padded minutes: ${dailyDataArray[i].minute}`);
+  }
+}
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
