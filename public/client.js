@@ -104,8 +104,13 @@ const calculateRainfall = () => {
     }
     //Method 1: Calculate an average rainfall rate for each day and use this to calculate an estimated daily total
     for (i=0; i<numDays; i++){
-        dailyDataArray[i].rain  = (dailyDataArray[i].rain / dailyDataArray[i].numRecords) * 24;
-        dailyDataArray[i].rain = (dailyDataArray[i].rain * 1000) / 25.4;
+        if (dailyDataArray[i].numRecords == 0){
+            dailyDataArray[i].rain = 0; 
+        }
+        else{
+            dailyDataArray[i].rain  = (dailyDataArray[i].rain / dailyDataArray[i].numRecords) * 24;
+            dailyDataArray[i].rain = (dailyDataArray[i].rain * 1000) / 25.4;
+        }
         dailyRainTotalInches += dailyDataArray[i].rain;
     }
     //Method 2:Calculate an average rainfall rate for the time period and use this to calculate an estimated total 
