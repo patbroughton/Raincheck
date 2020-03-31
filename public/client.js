@@ -150,12 +150,13 @@ function geolocate() {
     });       
 }
 function createChart() {
+    Chart.defaults.global.defaultFontSize = 16;
     let chartLabels = [];
     let chartData = [];
     let chartDataBg = [];
     for(i=0; i<numDays; i++){
-        chartLabels[i] = dailyDataArray[i].date;
-        chartData[i] = dailyDataArray[i].rain;
+        chartLabels[i] = dailyDataArray[numDays-i-1].date;
+        chartData[i] = dailyDataArray[numDays-i-1].rain;
         chartDataBg[i] = 'rgba(54, 162, 235, 1.0)';
     }
     console.log(chartData);
@@ -188,10 +189,26 @@ function createChart() {
             }]
         },
         options: {
+            legend: {
+                display: false
+            },
             scales: {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Inches'
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date'
                     }
                 }]
             }
