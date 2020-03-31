@@ -2,7 +2,7 @@
 import './chart.js/dist/Chart.js';
 
 const NUM_DAYS_MAX = 30;
-let numDays = 3;
+let numDays = 7;
 let station, lat, lon, weather;
 const now = new Date()
 const timezoneOffset = now.getTimezoneOffset();
@@ -76,10 +76,11 @@ const fetchWeather = async () => {
         document.getElementById('station').textContent = station;
         //Calculate total rainfall and display it
         const rainTotal = calculateRainfall();
+        document.getElementById('summary').textContent = `${numDays}-Day Rain Data:`;
         appendWeatherToDOM(`Total: ${Math.round((rainTotal + Number.EPSILON) * 100) / 100}`);
-        appendWeatherToDOM(`${dailyDataArray[0].month}/${dailyDataArray[0].date}: ${Math.round((dailyDataArray[0].rain + Number.EPSILON) * 100) / 100}`);
-        appendWeatherToDOM(`${dailyDataArray[1].month}/${dailyDataArray[1].date}: ${Math.round((dailyDataArray[1].rain + Number.EPSILON) * 100) / 100}`);
-        appendWeatherToDOM(`${dailyDataArray[2].month}/${dailyDataArray[2].date}: ${Math.round((dailyDataArray[2].rain + Number.EPSILON) * 100) / 100}`);
+        for(i=0; i< numDays; i++){
+            appendWeatherToDOM(`${dailyDataArray[i].month}/${dailyDataArray[i].date}: ${Math.round((dailyDataArray[i].rain + Number.EPSILON) * 100) / 100}`);
+        }
         console.log(`Daily Data:`);
         console.log(dailyDataArray);
     } catch (error) {
@@ -150,46 +151,58 @@ function geolocate() {
         }
     });       
 }
-
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
+function createChart() {
+    let chartLabels = [];
+    let chartData = [];
+    let chartDataBg = [];
+    for(i=0; i<numDays; i++){
+        chartLabels[i] = dailyDataArray[i].date;
+        chartData[i] = dailyDataArray[i].rain;
+        chartDataBg[i] = 'rgba(54, 162, 235, 1.0)';
     }
-});
+    console.log(chartData);
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: chartLabels,
+            datasets: [{
+                label: 'Inches of Rain',
+                data: chartData,
+                backgroundColor: chartDataBg
+                // backgroundColor: [
+                //     'rgba(255, 99, 132, 0.2)',
+                //     'rgba(54, 162, 235, 0.2)',
+                //     'rgba(255, 206, 86, 0.2)',
+                //     'rgba(75, 192, 192, 0.2)',
+                //     'rgba(153, 102, 255, 0.2)',
+                //     'rgba(255, 159, 64, 0.2)'
+                // ],
+                //borderColor: 'rgba(255, 99, 132, 1)',
+                //     'rgba(255, 99, 132, 1)',
+                //     'rgba(54, 162, 235, 1)',
+                //     'rgba(255, 206, 86, 1)',
+                //     'rgba(75, 192, 192, 1)',
+                //     'rgba(153, 102, 255, 1)',
+                //     'rgba(255, 159, 64, 1)'
+                // ],
+                //borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}
 
-geolocate().then(fetchWeather);
+
+geolocate().then(fetchWeather).then(createChart);
 
 
 
