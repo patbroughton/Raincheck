@@ -157,7 +157,7 @@ function createChart() {
     for(i=0; i<numDays; i++){
         chartLabels[i] = dailyDataArray[numDays-i-1].date;
         chartData[i] = dailyDataArray[numDays-i-1].rain;
-        chartDataBg[i] = 'rgba(54, 162, 235, 1.0)';
+        chartDataBg[i] = 'rgba(24, 106, 168, 0.8)';
     }
     console.log(chartData);
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -192,6 +192,9 @@ function createChart() {
             legend: {
                 display: false
             },
+            //devicePixelRatio: 4,
+            maintainAspectRatio: false,
+            responsive: true,
             scales: {
                 yAxes: [{
                     ticks: {
