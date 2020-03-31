@@ -60,27 +60,28 @@ const fetchWeather = async () => {
     };
     //Await the server's response
     console.log(`sending lat data of ${lat} and lon data of ${lon} to server`);
-    let response = await fetch('/api', options);
-    response = await response.json();
-    console.log(response);
+    let address = await fetch('/api', options);
+    address = await address.json();
+    console.log(address);
+    document.getElementById('city').textContent = address.address.city;
+    document.getElementById('state').textContent = address.address.state;
     //Request weather data from server
     const api_url = `weather`;
     try{
         const response = await fetch(api_url);
         //Await the server's response
-        const json = await response.json();
-        weather = json;
+        weather = await response.json();
         console.log(`Weather Data:`);
         console.log(weather);
         station = weather.features[0].properties.station;
         document.getElementById('station').textContent = station;
         //Calculate total rainfall and display it
         const rainTotal = calculateRainfall();
-        document.getElementById('summary').textContent = `${numDays}-Day Rain Data:`;
-        appendWeatherToDOM(`Total: ${Math.round((rainTotal + Number.EPSILON) * 100) / 100}`);
-        for(i=0; i< numDays; i++){
-            appendWeatherToDOM(`${dailyDataArray[i].month}/${dailyDataArray[i].date}: ${Math.round((dailyDataArray[i].rain + Number.EPSILON) * 100) / 100}`);
-        }
+        //document.getElementById('summary').textContent = `${numDays}-Day Rain Data:`;
+        //appendWeatherToDOM(`Total: ${Math.round((rainTotal + Number.EPSILON) * 100) / 100}`);
+        //for(i=0; i< numDays; i++){
+        //    appendWeatherToDOM(`${dailyDataArray[i].month}/${dailyDataArray[i].date}: ${Math.round((dailyDataArray[i].rain + Number.EPSILON) * 100) / 100}`);
+        //}
         console.log(`Daily Data:`);
         console.log(dailyDataArray);
     } catch (error) {
@@ -133,13 +134,10 @@ function geolocate() {
         //Check for geolocation capability
         if ('geolocation' in navigator) {
             console.log('geolocation available');
-            //Send latitude and longitude to server
             navigator.geolocation.getCurrentPosition(position => {
                 console.log(position.coords);
                 lat = position.coords.latitude;
                 lon = position.coords.longitude;
-                document.getElementById('latitude').textContent = lat.toFixed(2);
-                document.getElementById('longitude').textContent = lon.toFixed(2);
                 console.log('Callback finished');
                 resolve();
             });
@@ -202,7 +200,9 @@ function createChart() {
 }
 
 
-geolocate().then(fetchWeather).then(createChart);
+geolocate()
+.then(fetchWeather)
+.then(createChart);
 
 
 

@@ -40,15 +40,15 @@ app.get('/weather', async (req, res) => {
     const station_id = station_data_json.features[0].properties.stationIdentifier;
     console.log(`Station ID: ${station_id}`);
     const weather_url = `https://api.weather.gov/stations/${station_id}/observations?start=${start_timestamp}%3A00-00%3A00&end=${end_timestamp}%3A00-00%3A00`;
-    const response  = await fetch(weather_url);
-    const json = await response.json();
+    let response  = await fetch(weather_url);
+    let json = await response.json();
     res.json(json);
   } catch (error) {
       console.error(error);
     }
 });
 
-app.post('/api', (request, response) => {
+app.post('/api', async (request, response) => {
   console.log('Request received...');
   console.log(request.body);
   lat = request.body.lat;
@@ -57,13 +57,17 @@ app.post('/api', (request, response) => {
   for (i=0; i<numDays+1; i++){
     dailyDataArray[i] = request.body.dailyDataArray[i]
   }
-  response.json({
-    status: 'success',
-    latitude: lat,
-    longitude: lon,
-    numDays: numDays,
-    dailyDataArray: dailyDataArray
-  });
+  const reverseGeocode_url = `https://us1.locationiq.com/v1/reverse.php?key=9c476fdba7c017&lat=${lat}&lon=${lon}&format=json`;
+  let response2 = await fetch(reverseGeocode_url);
+  let json2 = await response2.json();
+  response.json(json2);
+  // response.json({
+  //   status: 'success',
+  //   latitude: lat,
+  //   longitude: lon,
+  //   numDays: numDays,
+  //   dailyDataArray: dailyDataArray
+  // });
 });
 
 // This function formats time data properly for API request
