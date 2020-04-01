@@ -150,7 +150,7 @@ function geolocate() {
     });       
 }
 function createChart() {
-    Chart.defaults.global.defaultFontSize = 16;
+    Chart.defaults.global.defaultFontSize = 28;
     let chartLabels = [];
     let chartData = [];
     let chartDataBg = [];
@@ -198,7 +198,8 @@ function createChart() {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        maxTicksLimit: 5
                     },
                     scaleLabel: {
                         display: true,
