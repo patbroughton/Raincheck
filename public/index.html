@@ -17,6 +17,11 @@
                         font-size: 28px;
                         color: black;
                     }
+                [id~="credit"]    { text-align: center;
+                                    font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
+                                    font-size: 28px;
+                                    color: black;
+                    }
                 .chart-container {
                     width: 800px;
                     height:600px;
@@ -38,9 +43,14 @@
                         font-size: 56px;
                         color: black;
                     }
+                [id~="credit"]    {  text-align: center;
+                                        font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
+                                        font-size: 28px;
+                                        color: black;
+                    }
                 .chart-container {
-                    width: 800px;
-                    height:600px;
+                    width: 1400px;
+                    height:1400px;
                     padding-left: 0;
                     padding-right: 0;
                     margin-left: auto;
@@ -60,7 +70,7 @@
         <div class="chart-container">
             <canvas id="myChart" width="400" height="400"></canvas>
         </div>
-        <p>Data provided by:
+        <p id="credit">Data provided by:
             <span id="station"></span>
         </p>
         <script type="module" src="client.js"></script>
