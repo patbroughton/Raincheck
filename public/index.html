@@ -6,25 +6,47 @@
         <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;800&family=Righteous&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap" rel="stylesheet">
         <style>
-            h1   {  text-align: center;
-                    font-family: 'Montserrat Alternates', Helvetica, sans-serif;
-                    color: #186aa8;
+            @media only screen and (min-width: 1600px) {
+                h1   {  text-align: center;
+                        font-family: 'Montserrat Alternates', Helvetica, sans-serif;
+                        color: #186aa8;
+                    }
+                p    {  text-align: center;
+                        font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
+                        font-size: 28px;
+                        color: black;
+                    }
+                .chart-container {
+                    width: 800px;
+                    height:600px;
+                    padding-left: 0;
+                    padding-right: 0;
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: block;
                 }
-            p    {  text-align: center;
-                    font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
-                    font-size: 28px;
-                    color: black;
-                }
-            .chart-container {
-                width: 800px;
-                height:600px;
-                padding-left: 0;
-                padding-right: 0;
-                margin-left: auto;
-                margin-right: auto;
-                display: block;
             }
-            </style>
+            @media only screen and (max-width: 1599px) {
+                h1   {  text-align: center;
+                        font-family: 'Montserrat Alternates', Helvetica, sans-serif;
+                        color: #186aa8;
+                    }
+                p    {  text-align: center;
+                        font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
+                        font-size: 56px;
+                        color: black;
+                    }
+                .chart-container {
+                    width: 800px;
+                    height:600px;
+                    padding-left: 0;
+                    padding-right: 0;
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: block;
+                }
+            }
+        </style>
     </head>
     <body>
         <div>
