@@ -95,8 +95,10 @@ const calculateRainfall = () => {
     let dayNum = 0;
     let dailyRainTotalInches = 0;
     for (i=0; i<weather.features.length; i++){
+        //Do some formatting of the data
         let timestamp = weather.features[i].properties.timestamp.split('-');
         let date = timestamp[2].split('T');
+        date[0] = parseInt(date[0], 10);
         //Method 1: Sum all reported rain measurements for each day
         if (date[0] == dailyDataArray[dayNum].date.toString(10)){
             dailyDataArray[dayNum].rain += weather.features[i].properties.precipitationLastHour.value;
