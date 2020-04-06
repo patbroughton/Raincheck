@@ -1,30 +1,30 @@
-const fs = require('fs');
-const https = require('https');
-const http = require('http');
+//const fs = require('fs');
+//const https = require('https');
+//const http = require('http');
 const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
 let lat, lon, numDays;
 
-const hostname = 'localhost';
-const httpPort = process.env.PORT || 80;
-const httpsPort = process.env.PORT || 443;
+//const hostname = 'localhost';
+//const httpPort = process.env.PORT || 80;
+//const httpsPort = process.env.PORT || 443;
 
-const httpsOptions = {
-  cert: fs.readFileSync('./ssl/raincheck_info.crt'),
-  ca: fs.readFileSync('./ssl/raincheck_info.ca-bundle'),
-  key: fs.readFileSync('./ssl/example_com.key')
-};
+//const httpsOptions = {
+//  cert: fs.readFileSync('./ssl/raincheck_info.crt'),
+//  ca: fs.readFileSync('./ssl/raincheck_info.ca-bundle'),
+//  key: fs.readFileSync('./ssl/example_com.key')
+//};
 
-const httpsServer = https.createServer(httpsOptions, app);
-const httpServer = http.createServer(app);
+//const httpsServer = https.createServer(httpsOptions, app);
+//const httpServer = http.createServer(app);
 
-app.use((req, res, next) => {
-  if(req.protocol === 'http') {
-    res.redirect(301, `https://${req.headers.host}${req.url}`);
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if(req.protocol === 'http') {
+//     res.redirect(301, `https://${req.headers.host}${req.url}`);
+//   }
+//   next();
+// });
 
 class DailyData {
     constructor() {
@@ -102,9 +102,9 @@ function padTime() {
   }
 }
 
-//const PORT = process.env.PORT || 3000;
-//app.listen(PORT, () => console.log(`listening on ${PORT}`));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`listening on ${PORT}`));
 app.use(express.static('public'));
 
-httpServer.listen(httpPort, hostname, () => console.log(`Listening on ${httpPort}`));
-httpsServer.listen(httpsPort, hostname, () => console.log(`Listening on ${httpsPort}`));
+//httpServer.listen(httpPort, hostname, () => console.log(`Listening on ${httpPort}`));
+//httpsServer.listen(httpsPort, hostname, () => console.log(`Listening on ${httpsPort}`));
