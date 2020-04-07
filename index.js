@@ -17,7 +17,7 @@ const httpsPort = process.env.PORT || 3000;
 const httpsOptions = {
   cert: fs.readFileSync('./ssl/raincheck_info.crt'),
   ca: fs.readFileSync('./ssl/raincheck_info.ca-bundle'),
-  key: process.env['SSL_KEY']
+  key: process.env.SSL_KEY
 };
 
 const httpsServer = https.createServer(httpsOptions, app);
