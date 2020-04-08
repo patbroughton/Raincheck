@@ -77,7 +77,7 @@ const fetchWeather = async () => {
         document.getElementById('station').textContent = station;
         //Calculate total rainfall and display it
         const rainTotal = calculateRainfall();
-        //document.getElementById('summary').textContent = `${numDays}-Day Rain Data:`;
+        document.getElementById('total').textContent = `${Math.round((rainTotal + Number.EPSILON) * 100) / 100}"`;
         //appendWeatherToDOM(`Total: ${Math.round((rainTotal + Number.EPSILON) * 100) / 100}`);
         //for(i=0; i< numDays; i++){
         //    appendWeatherToDOM(`${dailyDataArray[i].month}/${dailyDataArray[i].date}: ${Math.round((dailyDataArray[i].rain + Number.EPSILON) * 100) / 100}`);
