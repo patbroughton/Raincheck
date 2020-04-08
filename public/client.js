@@ -158,7 +158,7 @@ function createChart() {
     let chartDataBg = [];
     for(i=0; i<numDays; i++){
         chartLabels[i] = dailyDataArray[numDays-i-1].date;
-        chartData[i] = dailyDataArray[numDays-i-1].rain;
+        chartData[i] = Math.round((dailyDataArray[numDays-i-1].rain + Number.EPSILON) * 100) / 100;
         chartDataBg[i] = 'rgba(24, 106, 168, 0.8)';
     }
     console.log(chartData);
