@@ -1,26 +1,26 @@
-require('dotenv').config();
-const fs = require('fs');
-const https = require('https');
-const http = require('http');
+//require('dotenv').config();
+//const fs = require('fs');
+//const https = require('https');
+//const http = require('http');
 const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
 let lat, lon, numDays;
 
-console.log("Env vars");
-console.log(process.env);
+//console.log("Env vars");
+//console.log(process.env);
 
 const hostname = 'localhost';
 //const httpPort = process.env.PORT || 80;
-const httpsPort = process.env.PORT || 3000;
+//const httpsPort = process.env.PORT || 3000;
 
-const httpsOptions = {
-  cert: fs.readFileSync('./ssl/raincheck_info.crt'),
-  ca: fs.readFileSync('./ssl/raincheck_info.ca-bundle'),
-  key: process.env.SSL_KEY
-};
+// const httpsOptions = {
+//   cert: fs.readFileSync('./ssl/raincheck_info.crt'),
+//   ca: fs.readFileSync('./ssl/raincheck_info.ca-bundle'),
+//   key: process.env.SSL_KEY
+// };
 
-const httpsServer = https.createServer(httpsOptions, app);
+//const httpsServer = https.createServer(httpsOptions, app);
 //const httpServer = http.createServer(app);
 
 //  app.use((req, res, next) => {
@@ -107,8 +107,8 @@ function padTime() {
 }
 
 const PORT = process.env.PORT || 3000;
-//app.listen(PORT, () => console.log(`listening on ${PORT}`));
+app.listen(PORT, () => console.log(`listening on ${PORT}`));
 app.use(express.static('public'));
 
 //httpServer.listen(httpPort, hostname, () => console.log(`Listening on ${httpPort}`));
-httpsServer.listen(httpsPort, hostname, () => console.log(`Listening on ${httpsPort}`));
+//httpsServer.listen(httpsPort, hostname, () => console.log(`Listening on ${httpsPort}`));
