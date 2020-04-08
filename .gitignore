@@ -1,5 +1,9 @@
 darksky key.txt
 node_modules
 .env
-example_com.key
+ssl/example_com.csr
+ssl/raincheck_info.ca-bundle
+ssl/raincheck_info.crt
+ssl/raincheck_info.pb7
+ssl/example_com.key
 Development Notes.odt
