@@ -17,6 +17,12 @@
                         font-size: 28px;
                         color: black;
                     }
+                div.city-and-total {
+                    line-height: 80%;
+                    }
+                div.normal {
+                    line-height: 400%;
+                    }
                 [id~="credit"]    { text-align: center;
                                     font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
                                     font-size: 20px;
@@ -24,7 +30,7 @@
                     }
                 .chart-container {
                     width: 50vw;
-                    height:70vh;
+                    height:60vh;
                     padding-left: 0;
                     padding-right: 6vw;
                     margin-left: auto;
@@ -50,7 +56,7 @@
                     }
                 .chart-container {
                     width: 90vw;
-                    height: 60vh;
+                    height: 50vh;
                     padding-left: 0;
                     padding-right: 0;
                     margin-left: auto;
@@ -61,14 +67,16 @@
         </style>
     </head>
     <body>
-        <div>
+        <div class="normal">
             <h1>Weekly Rainfall</h1>
-            <p>
-                <span id="city"></span>, <span id="state"></span>
-            </p>
-            <p>
-                <span id="total"></span>
-            </p>   
+            <div class="city-and-total">
+                <p>
+                    <span id="city"></span>, <span id="state"></span>
+                </p>
+                <p>
+                    <span id="total"></span>
+                </p>
+            </div>   
         </div>
         <div class="chart-container">
             <canvas id="myChart" width="400" height="400"></canvas>
