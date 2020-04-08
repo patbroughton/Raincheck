@@ -23,8 +23,9 @@
                 div.normal {
                     line-height: 400%;
                     }
-                    [id~="loader"]    img{  src: "/images/title_screen_1600x900.jpg";
-                    }
+                .title_screen{
+                    content:url("/images/title_screen_1600x900.jpg");
+                }
                 [id~="credit"]    { text-align: center;
                                     font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
                                     font-size: 20px;
@@ -57,8 +58,9 @@
                 div.normal {
                     line-height: 600%;
                     }
-                [id~="loader"]    img{  src: "/images/title_screen_1440x2880.jpg";
-                    }
+                .title_screen{
+                    content:url("/images/title_screen_1440x2880.jpg");
+                }
                 [id~="credit"]    {  text-align: center;
                                         font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
                                         font-size: 28px;
@@ -77,7 +79,7 @@
         </style>
     </head>
     <body>
-    <div id="loader"><img src="/images/title_screen_1600x900.jpg" alt="Loading..."></div>
+    <div id="loader"><img class="title_screen", alt="Loading..." /></div>
     <div style="display:none;" id="main">
         <div class="normal">
             <h1>Weekly Rainfall</h1>
