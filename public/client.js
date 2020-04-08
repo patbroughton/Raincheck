@@ -3,6 +3,7 @@ import './chart.js/dist/Chart.js';
 
 const NUM_DAYS_MAX = 30;
 let numDays = 7;
+let maxDailyRain = 0;
 let station, lat, lon, weather;
 const now = new Date()
 const timezoneOffset = now.getTimezoneOffset();
@@ -91,7 +92,6 @@ const fetchWeather = async () => {
 }
 
 const calculateRainfall = () => {
-    let rainTotalMeters = 0;
     let dayNum = 0;
     let dailyRainTotalInches = 0;
     for (i=0; i<weather.features.length; i++){
@@ -99,7 +99,7 @@ const calculateRainfall = () => {
         let timestamp = weather.features[i].properties.timestamp.split('-');
         let date = timestamp[2].split('T');
         date[0] = parseInt(date[0], 10);
-        //Method 1: Sum all reported rain measurements for each day
+        //Sum all reported rain measurements for each day
         if (date[0] == dailyDataArray[dayNum].date.toString(10)){
             dailyDataArray[dayNum].rain += weather.features[i].properties.precipitationLastHour.value;
             dailyDataArray[dayNum].numRecords++;
@@ -107,10 +107,8 @@ const calculateRainfall = () => {
         else {
             dayNum++;
         }
-        //Method 2: Sum all reported measurements, not separating them by day
-        rainTotalMeters += weather.features[i].properties.precipitationLastHour.value;
     }
-    //Method 1: Calculate an average rainfall rate for each day and use this to calculate an estimated daily total
+    //Calculate an average rainfall rate for each day and use this to calculate an estimated daily total
     for (i=0; i<numDays; i++){
         if (dailyDataArray[i].numRecords == 0){
             dailyDataArray[i].rain = 0; 
@@ -118,15 +116,12 @@ const calculateRainfall = () => {
         else{
             dailyDataArray[i].rain  = (dailyDataArray[i].rain / dailyDataArray[i].numRecords) * 24;
             dailyDataArray[i].rain = (dailyDataArray[i].rain * 1000) / 25.4;
+            if (dailyDataArray[i].rain > maxDailyRain){
+                maxDailyRain = dailyDataArray[i].rain;
+            }
         }
         dailyRainTotalInches += dailyDataArray[i].rain;
     }
-    //Method 2:Calculate an average rainfall rate for the time period and use this to calculate an estimated total 
-    const rainTotalInches = (rainTotalMeters * 1000) / 25.4;
-    const averageRainTotalInches = (rainTotalInches / weather.features.length) * 24 * numDays;
-    console.log(`Rain total (inches): ${rainTotalInches}`);
-    console.log(`Daily Rain total (inches): ${dailyRainTotalInches}`);
-    console.log(`Average rain total (inches): ${averageRainTotalInches}`);
     return dailyRainTotalInches
 }
 
@@ -201,8 +196,6 @@ function createChart() {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        maxTicksLimit: 6,
-                        stepSize: .2
                     },
                     scaleLabel: {
                         display: true,
@@ -223,10 +216,13 @@ function createChart() {
     });
 }
 
+function showPage() {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("main").style.display = "block";
+}
 
 geolocate()
 .then(fetchWeather)
 .then(createChart);
-
-
-
+setTimeout(showPage, 2000);
+//setTimeout(function(){window.location='page2.html';},0);

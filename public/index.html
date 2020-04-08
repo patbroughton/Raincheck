@@ -23,6 +23,8 @@
                 div.normal {
                     line-height: 400%;
                     }
+                [id~="title_screen"]    {  src: "/images/title_screen_1600x900.jpg";
+                    }
                 [id~="credit"]    { text-align: center;
                                     font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
                                     font-size: 20px;
@@ -55,6 +57,8 @@
                 div.normal {
                     line-height: 600%;
                     }
+                [id~="title_screen"]    {  src: "/images/title_screen_1440x2880.jpg";
+                    }
                 [id~="credit"]    {  text-align: center;
                                         font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
                                         font-size: 28px;
@@ -73,6 +77,8 @@
         </style>
     </head>
     <body>
+    <div id="loader"><img id="title_screen" src="/images/title_screen_1600x900.jpg" alt="Loading..."></div>
+    <div style="display:none;" id="main">
         <div class="normal">
             <h1>Weekly Rainfall</h1>
             <div class="city-and-total">
@@ -90,6 +96,7 @@
         <p id="credit">Data provided by:
             <span id="station"></span>
         </p>
-        <script type="module" src="client.js"></script>
+    </div>
+    <script type="module" src="client.js"></script>
     </body>
 </html>
