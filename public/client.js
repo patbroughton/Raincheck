@@ -201,7 +201,8 @@ function createChart() {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        maxTicksLimit: 5
+                        maxTicksLimit: 6,
+                        stepSize: .2
                     },
                     scaleLabel: {
                         display: true,
