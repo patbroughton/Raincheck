@@ -239,5 +239,5 @@ function getData() {
     .then(showChart);
 }
 setTimeout(showPage, 2000);
-setTimeout(getData, 2000);
+setTimeout(getData, 1500);
 
