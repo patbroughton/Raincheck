@@ -237,6 +237,6 @@ function showChart() {
 geolocate()
 .then(fetchWeather)
 .then(showChart);
-setTimeout(showPage, 2000);
+setTimeout(showPage, 500);
 //setTimeout(showChart, 4000);
 //setTimeout(function(){window.location='page2.html';},0);
