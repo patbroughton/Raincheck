@@ -10,7 +10,7 @@
                 h1   {  text-align: center;
                         font-family: 'Montserrat Alternates', Helvetica, sans-serif;
                         font-size: 28px;
-                        color: #186aa8;
+                        color: rgba(13,110,231,1);
                     }
                 p    {  text-align: center;
                         font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
@@ -51,7 +51,7 @@
                 h1   {  text-align: center;
                         font-family: 'Montserrat Alternates', Helvetica, sans-serif;
                         font-size: 72px;
-                        color: #186aa8;
+                        color: rgba(13,110,231,1);
                     }
                 p    {  text-align: center;
                         font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
@@ -88,18 +88,18 @@
             .spinner,
             .spinner:before,
             .spinner:after {
-            background: #ffffff;
+            background: rgba(13,110,231,1);
             -webkit-animation: load1 1s infinite ease-in-out;
             animation: load1 1s infinite ease-in-out;
             width: 1em;
             height: 4em;
             }
             .spinner {
-            color: rgb(24, 106, 168);
+            color: rgba(13,110,231,1);
             text-indent: -9999em;
             margin: 20vh auto;
             position: relative;
-            font-size: 44px;
+            font-size: 33px;
             -webkit-transform: translateZ(0);
             -ms-transform: translateZ(0);
             transform: translateZ(0);
@@ -153,13 +153,13 @@
             <h1>Weekly Rainfall</h1>
             <div class="city-and-total">
                 <p>
-                    <span id="city"></span>, <span id="state"></span>
+                    <span id="city"></span><span id="city_alt">Getting your location...</span>
                 </p>
                 <p>
                     <span id="total"></span>
                 </p>
             </div>
-            <div class="spinner" style="display:block;" width="400" height="400">Getting your weather...</div>   
+            <div class="spinner" style="display:block;">Getting your weather...</div>   
         </div>
         <div class="chart-container" style="display:none;">
             <canvas id="myChart" width="400" height="400"></canvas>

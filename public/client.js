@@ -64,8 +64,9 @@ const fetchWeather = async () => {
     let address = await fetch('/api', options);
     address = await address.json();
     console.log(address);
-    document.getElementById('city').textContent = address.address.city;
-    document.getElementById('state').textContent = address.address.state;
+    document.getElementById('city').textContent = `${address.address.city}, ${address.address.state}`;
+    //document.getElementById('state').textContent = address.address.state;
+    document.getElementById('city_alt').textContent = '';
     //Request weather data from server
     const api_url = `weather`;
     try{
@@ -161,7 +162,7 @@ function createChart() {
     for(i=0; i<numDays; i++){
         chartLabels[i] = dailyDataArray[numDays-i-1].date;
         chartData[i] = Math.round((dailyDataArray[numDays-i-1].rain + Number.EPSILON) * 100) / 100;
-        chartDataBg[i] = 'rgba(24, 106, 168, 0.8)';
+        chartDataBg[i] = 'rgba(13, 110, 231, 0.75)';
     }
     console.log(chartData);
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -239,5 +240,5 @@ function getData() {
     .then(showChart);
 }
 setTimeout(showPage, 2000);
-setTimeout(getData, 1500);
+setTimeout(getData, 4000);
 
