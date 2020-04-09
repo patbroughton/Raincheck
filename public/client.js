@@ -228,10 +228,10 @@ function showPage() {
     document.getElementById("main").style.display = "block";
 }
 function showChart() {
-    createChart();
     document.getElementsByClassName("spinner")[0].style.display = "none";
     document.getElementsByClassName("chart-container")[0].style.display = "block";
     document.getElementById("credit").style.display = "block";
+    createChart();
 }
 
 geolocate()
