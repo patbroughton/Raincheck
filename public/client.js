@@ -233,10 +233,11 @@ function showChart() {
     document.getElementById("credit").style.display = "block";
     createChart();
 }
+function getData() {
+    geolocate()
+    .then(fetchWeather)
+    .then(showChart);
+}
+setTimeout(showPage, 2000);
+setTimeout(getData, 2000);
 
-geolocate()
-.then(fetchWeather)
-.then(showChart);
-setTimeout(showPage, 500);
-//setTimeout(showChart, 4000);
-//setTimeout(function(){window.location='page2.html';},0);
