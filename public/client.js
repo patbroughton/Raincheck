@@ -170,7 +170,7 @@ function createChart() {
         data: {
             labels: chartLabels,
             datasets: [{
-                label: 'Inches of Rain',
+                label: 'Inches',
                 data: chartData,
                 backgroundColor: chartDataBg
                 // backgroundColor: [
