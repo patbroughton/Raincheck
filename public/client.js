@@ -227,9 +227,16 @@ function showPage() {
     document.getElementById("loader").style.display = "none";
     document.getElementById("main").style.display = "block";
 }
+function showChart() {
+    createChart();
+    document.getElementsByClassName("spinner")[0].style.display = "none";
+    document.getElementsByClassName("chart-container")[0].style.display = "block";
+    document.getElementById("credit").style.display = "block";
+}
 
 geolocate()
 .then(fetchWeather)
-.then(createChart);
+.then(showChart);
 setTimeout(showPage, 2000);
+//setTimeout(showChart, 4000);
 //setTimeout(function(){window.location='page2.html';},0);
