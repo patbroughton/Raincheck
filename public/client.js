@@ -113,6 +113,13 @@ const calculateRainfall = () => {
         if (dailyDataArray[i].numRecords == 0){
             dailyDataArray[i].rain = 0; 
         }
+        else if (i==0){
+            dailyDataArray[0].rain  = (dailyDataArray[0].rain / dailyDataArray[0].numRecords) * dailyDataArray[0].hour;
+            dailyDataArray[0].rain = (dailyDataArray[0].rain * 1000) / 25.4;
+            if (dailyDataArray[0].rain > maxDailyRain){
+                maxDailyRain = dailyDataArray[0].rain;
+            }
+        }
         else{
             dailyDataArray[i].rain  = (dailyDataArray[i].rain / dailyDataArray[i].numRecords) * 24;
             dailyDataArray[i].rain = (dailyDataArray[i].rain * 1000) / 25.4;
