@@ -239,6 +239,10 @@ function getData() {
     .then(fetchWeather)
     .then(showChart);
 }
+document.getElementsByClassName("red").first.style.top = "150%";
+setTimeout( () => { document.getElementsByClassName("red").second.style.top = "150%"; }, 550);
+setTimeout( () => { document.getElementsByClassName("red").third.style.top = "150%"; }, 300);
+
 setTimeout(showPage, 2000);
 setTimeout(getData, 4000);
 
