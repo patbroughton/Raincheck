@@ -1,4 +1,4 @@
-darksky key.txt
+/docs
 node_modules
 .env
 ssl/example_com.csr

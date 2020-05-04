@@ -232,6 +232,8 @@ function showChart() {
     document.getElementsByClassName("spinner")[0].style.display = "none";
     document.getElementsByClassName("chart-container")[0].style.display = "block";
     document.getElementById("credit").style.display = "block";
+    document.getElementById("about").style.display = "block";
+    document.getElementById("copyright").style.display = "block";
     createChart();
 }
 function getData() {

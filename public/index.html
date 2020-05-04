@@ -32,10 +32,10 @@
                     margin: auto;
                     content:url("/images/title_screen_1600x900.jpg");
                 }
-                [id~="credit"]    { text-align: center;
-                                    font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
-                                    font-size: 20px;
-                                    color: black;
+                #credit, #about, #copyright    {  text-align: center;
+                    font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
+                    font-size: 20px;
+                    color: black;
                     }
                 .chart-container {
                     width: 50vw;
@@ -70,10 +70,11 @@
                     margin: auto;
                     content:url("/images/title_screen_1440x2880.jpg");
                 }
-                [id~="credit"]    {  text-align: center;
-                                        font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
-                                        font-size: 28px;
-                                        color: black;
+                #credit, #about, #copyright    {  
+                    text-align: center;
+                    font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
+                    font-size: 20px;
+                    color: black;
                     }
                 .chart-container {
                     width: 90vw;
@@ -190,6 +191,13 @@
         </div>
         <p id="credit" style="display:none;">Data provided by:
             <span id="station"></span>
+        </p>
+        <p id="about" style="display:none;">
+            <a href="/about.html">About Raincheck</a>
+            &nbsp
+            <a href="/credits.html">Credits</a>
+        </p>
+        <p id="copyright" style="display:none;">© Polygon Engineering 2020
         </p>
     </div>
     <script type="module" src="client.js"></script>

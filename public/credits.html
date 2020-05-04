@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>About Raincheck</title>
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;800&family=Righteous&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap" rel="stylesheet">
+        <style>
+            html, body {
+                margin: 0;
+                min-height: 100%;
+            }       
+            #about a:link{
+                    color:#FFFFFF;
+                }
+                #about a:visited{
+                    color:#FFFFFF;
+                }
+            @media only screen and (min-width: 1600px) {
+                #main {
+                    background-color: rgb(255, 255, 255);
+                    width: 50vw;
+                    margin: auto;
+                    margin-top: 45px;
+                    padding: 10px;
+                    border: 3px solid rgb(8,71,164);
+                    border-top-left-radius: 100px;
+                    border-top-right-radius: 100px;
+                    border-bottom-left-radius: 40px;
+                    border-bottom-right-radius: 40px;
+                }
+                .normal{
+                    padding-top: 2vh;
+                }
+                h1   {  text-align: center;
+                        font-family: 'Montserrat Alternates', Helvetica, sans-serif;
+                        font-size: 24px;
+                        color: rgba(13,110,231,1);
+                    }
+                p    {  text-align: center;
+                        font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
+                        font-size: 20px;
+                        color: black;
+
+                        #about {
+                            a {
+                                color: white;
+                            }
+                            a:visited {
+                                color: white;
+                            }
+                            a:hover, a:active, a:focus {
+                                color:#c33;
+                            }
+                        }
+                    }
+                div.city-and-total {
+                    margin: 2vh;
+                    line-height: 175%;
+                    }
+                [id~="credit"]    { text-align: center;
+                                    font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
+                                    font-size: 20px;
+                                    color:white;
+                    }
+            }
+            @media only screen and (max-width: 1599px) {
+                #main {
+                    background-color: rgb(255, 255, 255);
+                    width: 80vw;
+                    margin: auto;
+                    margin-top: 10px;
+                    padding: 5px;
+                    border: 3px solid rgb(8,71,164);
+                    border-top-left-radius: 100px;
+                    border-top-right-radius: 100px;
+                    border-bottom-left-radius: 40px;
+                    border-bottom-right-radius: 40px;
+                }
+                .normal{
+                    padding-top: 1vh;
+                }
+                h1   {  text-align: center;
+                        font-family: 'Montserrat Alternates', Helvetica, sans-serif;
+                        font-size: 20px;
+                        color: rgba(13,110,231,1);
+                    }
+                p    {  text-align: center;
+                        font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
+                        font-size: 18px;
+                        color: black;
+                    }
+                div.city-and-total {
+                    margin-left: 2vh;
+                    margin-right: 2vh;
+                    line-height: 175%;
+                    }
+                [id~="credit"]    {  text-align: center;
+                                        font-family: 'Baloo Thambi 2', Helvetica, sans-serif;
+                                        font-size: 16px;
+                                        color: white;
+                    }
+            }
+        </style>
+    </head>
+    <body style="background-image: linear-gradient(rgb(14,110,255), rgb(3,31,71)); background-repeat: no-repeat;">
+    <div style="display:block;" id="main">
+        <div class="normal">
+            <h1>Credits</h1>
+            <div class="city-and-total">
+                <p>
+                    All code and graphic design by Pat Broughton, with the following exceptions:
+                </p>
+                <p>
+                    "3-bar spinner" by <a href="https://lukehaas.me/">Luke Haas</a>.
+                </p>
+                <p>
+                    Location data provided by <a href="https://locationiq.com/">LocationIQ</a>.
+                </p>
+                <p>
+                    Weather data provided by the <a href="https://www.weather.gov/documentation/services-web-api">Weather.gov API</a>.
+                </p>
+                <p>
+                    Raindrop icon provided by <a href="https://www.flaticon.com/">Flaticon</a>.
+                </p>
+            </div> 
+        </div>
+    </div>
+    <p id="about" style="display:block;">
+        <a href="/index.html">Home</a>
+        &nbsp
+        <a href="/about.html">About Raincheck</a>
+    </p>
+    <p id="credit" style="display:block;">
+        © Polygon Engineering 2020
+    </p>
+    </body>
+</html>
